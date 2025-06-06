@@ -1,2 +1,2 @@
-# uart-h7
-A repo for sending data over UART using an STM32H723ZG + some other features, like PWM LEDs. Essentially just a practice repo to get familiar with the H723ZG. 
+# Nucleo-H723ZG-LED
+Functionality: Press user button 1 to toggle the 3 leds (LD1, LD2, LD3) on/off. Uses an interrupt with no debouncing. Button is connect to VCC. 
