@@ -1,0 +1,18 @@
+# Author: Gabriel Rodgers
+# Date: 12/27/2024
+# Purpose: simplify makefile by creating a bunch of assignments to be used in the makefile.
+
+STARTUP := startup
+STARTUP_FILE := $(startup)/startup.s
+
+SOURCES := \
+	$(wildcard src/*.c) \
+
+# use -I to indicate a custom path
+INCLUDES := \
+	-I./ \
+	-Iinclude \
+	-I$(HOME)/workspace/STM32CubeH7/Drivers/CMSIS/Include \
+	-I$(HOME)/workspace/STM32CubeH7/Drivers/CMSIS/Core/Include 
+
+LINKER := $(STARTUP)/ls.ld
