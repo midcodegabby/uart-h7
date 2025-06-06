@@ -8,8 +8,6 @@ Date: 6/5/2025
 #ifndef _NVIC_H
 #define _NVIC_H
 
-void nvic_enable(uint8_t vector_position);
-void nvic_disable(uint8_t vector_position);
-void nvic_priority(uint8_t vector_position, uint8_t);
+void nvic_enable(void);
 
 #endif /* _NVIC_H */

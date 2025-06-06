@@ -5,6 +5,7 @@ Date: 6/5/2025
 
 #include <stdint.h>
 
+#include "stm32h723xx.h"
 #include "gpio.h"
 
 void gpio_init(void){
@@ -20,49 +21,49 @@ void gpio_init(void){
 
 void gpio_toggle(char port, uint8_t pin){
     switch(port) {
-        case("B"):
+        case('B'):
             GPIOB->ODR ^= (1 << pin);
             break;
-        case("C"):
+        case('C'):
             GPIOC->ODR ^= (1 << pin); 
             break;
-        case("E"):
+        case('E'):
             GPIOE->ODR ^= (1 << pin); 
             break;
-        case(default):
-            break; //probably do error msg in the future
+        default:
+            break;
     }
 }
 
 void gpio_on(char port, uint8_t pin) {
     switch(port) {
-        case("B"):
+        case('B'):
             GPIOB->BSRR |= (1 << pin);
             break;
-        case("C"):
+        case('C'):
             GPIOC->BSRR |= (1 << pin); 
             break;
-        case("E"):
+        case('E'):
             GPIOE->BSRR |= (1 << pin); 
             break;
-        case(default):
-            break; //probably do error msg in the future
+        default:
+            break;
     }
 }
 
 void gpio_off(char port, uint8_t pin) {
     switch(port) {
-        case("B"):
+        case('B'):
             GPIOB->BSRR |= (1 << (pin + 16));
             break;
-        case("C"):
+        case('C'):
             GPIOC->BSRR |= (1 << (pin + 16)); 
             break;
-        case("E"):
+        case('E'):
             GPIOE->BSRR |= (1 << (pin + 16)); 
             break;
-        case(default):
-            break; //probably do error msg in the future
+        default:
+            break;
     }
 }
 

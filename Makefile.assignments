@@ -3,7 +3,7 @@
 # Purpose: simplify makefile by creating a bunch of assignments to be used in the makefile.
 
 STARTUP := startup
-STARTUP_FILE := $(startup)/startup.s
+STARTUP_FILE := startup/startup.s
 
 SOURCES := \
 	$(wildcard src/*.c) \

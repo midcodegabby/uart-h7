@@ -22,9 +22,9 @@ void EXTI15_10_IRQHandler(void) {
 	EXTI->EMR1 &= ~(1 << 13);
 
     //toggle leds
-	gpio_toggle('b', 0);
-	gpio_toggle('e', 1);
-	gpio_toggle('b', 14);
+	gpio_toggle('B', 0);
+	gpio_toggle('E', 1);
+	gpio_toggle('B', 14);
 
 	NVIC->ICPR[1] |= (1 << 8); //clear pending interrupt 40
 	EXTI->PR1 |= (1 << 13); //clear pending interrupts on line 13

@@ -8,6 +8,6 @@ Date: 6/5/2025
 #ifndef _CLOCK_H
 #define _CLOCK_H
 
-void clock_init(void);
+void clock_peripherals_init(void);
 
 #endif /* _CLOCK_H */
