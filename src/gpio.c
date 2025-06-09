@@ -8,15 +8,28 @@ Date: 6/5/2025
 #include "stm32h723xx.h"
 #include "gpio.h"
 
-void gpio_init(void){
-    //leds
-    GPIOB->MODER &= ~(1 << 1); //output mode for PB0
-	GPIOB->MODER &= ~(1 << 29); //output mode for PB14
-	GPIOE->MODER &= ~(1 << 3); //output mode for PE1
-
-    //button
+void gpio_button_init(void){
     GPIOC->MODER &= ~(0x3 << 26); //input mode for PC13
 	GPIOC->PUPDR |= (1 << 27); //pull down R for PC13
+}
+
+void gpio_led_init(GPIO_mode_t MODE){
+    switch(MODE) {
+        case(OUTPUT):
+            GPIOB->MODER &= ~(1 << 1); //output mode for PB0
+            GPIOB->MODER &= ~(1 << 29); //output mode for PB14
+            GPIOE->MODER &= ~(1 << 3); //output mode for PE1
+            break;
+        case(PWM):
+
+            break;
+        default:
+            break;
+    }
+}
+
+void gpio_timer_init(char port, uint8_t pin, uint8_t timer) {
+
 }
 
 void gpio_toggle(char port, uint8_t pin){

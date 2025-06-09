@@ -18,7 +18,8 @@
 
 int main(void) {
 	clock_peripherals_init();
-	gpio_init();
+	gpio_button_init();
+	gpio_led_init(OUTPUT);
 	nvic_enable();
 	exti_init();
 

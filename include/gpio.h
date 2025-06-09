@@ -9,7 +9,15 @@ Date: 6/5/2025
 #ifndef _GPIO_H
 #define _GPIO_H
 
-void gpio_init(void);
+typedef enum {
+    PWM,
+    OUTPUT,
+    INPUT
+} GPIO_mode_t;
+
+void gpio_button_init(void);
+void gpio_led_init(GPIO_mode_t MODE);
+void gpio_timer_init(char port, uint8_t pin, uint8_t timer);
 void gpio_toggle(char port, uint8_t pin);
 void gpio_on(char port, uint8_t pin);
 void gpio_off(char port, uint8_t pin);
