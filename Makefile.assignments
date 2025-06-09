@@ -12,7 +12,7 @@ SOURCES := \
 INCLUDES := \
 	-I./ \
 	-Iinclude \
-	-I$(HOME)/workspace/STM32CubeH7/Drivers/CMSIS/Include \
-	-I$(HOME)/workspace/STM32CubeH7/Drivers/CMSIS/Core/Include 
+	-I../STM32CubeH7/Drivers/CMSIS/Include \
+	-I../STM32CubeH7/Drivers/CMSIS/Core/Include
 
 LINKER := $(STARTUP)/ls.ld
