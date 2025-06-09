@@ -11,7 +11,7 @@ Date: 6/5/2025
 #include "nvic.h"
 
 void exti_init(void) {
-    SYSCFG->EXTICR[4] |= (0x2 << 4); //set EXTI line 13 to PC13
+    SYSCFG->EXTICR[3] |= (0x2 << 4); //set EXTI line 13 to PC13
 	EXTI->EMR1 |= (1 << 13); //unmask event line 13
 	EXTI->RTSR1 |= (1 << 13); //enable rising edge trigger for line 13
 	EXTI->IMR1 |= (1 << 13); //unmask interrupt line 13

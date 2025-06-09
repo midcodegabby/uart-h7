@@ -9,14 +9,14 @@ Date: 6/5/2025
 #include "gpio.h"
 
 void gpio_init(void){
-    //button
-    GPIOC->MODER &= ~(0x3 << 26); //input mode for PC13
-	GPIOC->PUPDR |= (1 << 27); //pull down R for PC13
-
     //leds
     GPIOB->MODER &= ~(1 << 1); //output mode for PB0
 	GPIOB->MODER &= ~(1 << 29); //output mode for PB14
 	GPIOE->MODER &= ~(1 << 3); //output mode for PE1
+
+    //button
+    GPIOC->MODER &= ~(0x3 << 26); //input mode for PC13
+	GPIOC->PUPDR |= (1 << 27); //pull down R for PC13
 }
 
 void gpio_toggle(char port, uint8_t pin){

@@ -18,11 +18,8 @@
 
 int main(void) {
 	clock_peripherals_init();
-	for (volatile int i = 0; i<10; i++);
 	gpio_init();
-	for (volatile int i = 0; i<10; i++);
 	nvic_enable();
-	for (volatile int i = 0; i<10; i++);
 	exti_init();
 
 	while (1) {
