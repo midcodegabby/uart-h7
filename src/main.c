@@ -10,14 +10,15 @@
 #include "exti.h"
 #include "gpio.h"
 #include "main.h"
-
+#include "tcnt.h"
 
 //LD1: PB0
 //LD2: PE1
 //LD3: PB14
 //B1: PC13
 
-const GPIO_mode_t led_mode = OUTPUT;
+const GPIO_mode_t led_mode = PWM;
+const uint8_t pwm_max = 0xF;
 volatile button_state_t button = UNPRESSED;
 
 int main(void) {
@@ -26,12 +27,29 @@ int main(void) {
 	gpio_led_init(led_mode);
 	nvic_enable();
 	exti_init();
+	timer3_pwm_init();
+	timer12_pwm_init();
 
-	while (1) {
-		if (button == PRESSED) {
-			gpio_toggle('B', 0);
-			gpio_toggle('E', 1);
-			gpio_toggle('B', 14);
+	while(1) {
+		static uint8_t led_brightness = 0;
+
+		if(button == PRESSED) {
+			if(led_mode == OUTPUT) {
+				gpio_toggle('B', 0);
+				gpio_toggle('E', 1);
+				gpio_toggle('B', 14);
+			}
+			else if(led_mode == PWM) {
+				led_brightness++;
+
+				timer_pwm_set_duty(3, led_brightness);
+				timer_pwm_set_duty(12, led_brightness);
+				
+				if(led_brightness == pwm_max) {
+					led_brightness = 0;
+				}
+			}
+			
 			button = UNPRESSED;
 		}
 	}

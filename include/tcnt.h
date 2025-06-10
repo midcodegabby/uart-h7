@@ -8,6 +8,8 @@ Date: 6/9/2025
 #ifndef _TCNT_H
 #define _TCNT_H
 
-void timer_init(void);
+void timer3_pwm_init(void);
+void timer12_pwm_init(void);
+void timer_pwm_set_duty(uint8_t timer_num, uint8_t duty);
 
 #endif /* _TCNT_H */
