@@ -21,15 +21,18 @@ void gpio_led_init(GPIO_mode_t MODE){
             GPIOE->MODER &= ~(1 << 3); //output mode for PE1
             break;
         case(PWM):
+            //alt function
+            GPIOB->MODER &= ~(1 << 0); 
+            GPIOB->MODER &= ~(1 << 28); 
 
+            GPIOE->MODER &= ~(1 << 3); //output mode for PE1; there is no timer channel for PE1
+
+            GPIOB->AFR[0] |= GPIO_AFRL_AFSEL0_1; //TIM2_CH3, AF2
+            GPIOB->AFR[1] |= GPIO_AFRH_AFSEL14_1; //TIM12_CH2, AF2
             break;
         default:
             break;
     }
-}
-
-void gpio_timer_init(char port, uint8_t pin, uint8_t timer) {
-
 }
 
 void gpio_toggle(char port, uint8_t pin){

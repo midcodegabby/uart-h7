@@ -9,6 +9,7 @@
 #include "nvic.h"
 #include "exti.h"
 #include "gpio.h"
+#include "main.h"
 
 
 //LD1: PB0
@@ -16,14 +17,23 @@
 //LD3: PB14
 //B1: PC13
 
+const GPIO_mode_t led_mode = OUTPUT;
+volatile button_state_t button = UNPRESSED;
+
 int main(void) {
 	clock_peripherals_init();
 	gpio_button_init();
-	gpio_led_init(OUTPUT);
+	gpio_led_init(led_mode);
 	nvic_enable();
 	exti_init();
 
 	while (1) {
+		if (button == PRESSED) {
+			gpio_toggle('B', 0);
+			gpio_toggle('E', 1);
+			gpio_toggle('B', 14);
+			button = UNPRESSED;
+		}
 	}
 
 	return 0;
