@@ -9,6 +9,6 @@ Functionality:
 #### STM32CubeH7
 To get STM32CubeH7, use the following command in the same directory that this repository is stored:
 ```
-git clone git@github.com/STMicroelectronics/STM32CubeH7.git
+git clone https://github.com/STMicroelectronics/STM32CubeH7.git
 ```
 
