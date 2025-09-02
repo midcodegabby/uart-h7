@@ -37,6 +37,25 @@ void timer12_pwm_init(void) {
     TIM12->CR1 |= TIM_CR1_CEN;   //enable counter
 }
 
+void timer3_up_init(void) {
+    TIM3->CR1 |= TIM_CR1_ARPE; //auto-reload preload
+    TIM3->CR1 |= TIM_CR1_URS; //only allow under/overflow interrupts
+    
+    TIM3->ARR = 0xFFFF; //ONE_SECOND_10KHZ; //CNT reloads once it reaches this value
+    TIM3->PSC = 63999; //counter runs at 10KHz
+
+    TIM3->EGR |= TIM_EGR_UG;    //update the counter registers
+    TIM3->CR1 |= TIM_CR1_CEN;   //enable counter
+}
+
+void timer3_blocking_delay(const uint32_t delay) {
+    TIM3->ARR = delay; //CNT reloads once it reaches this value
+    TIM3->EGR |= TIM_EGR_UG;    //update the counter registers
+    TIM3->CNT = 0;
+    while (TIM3->CNT < delay); 
+}
+
+
 void timer_pwm_set_duty(uint8_t timer_num, uint8_t duty) {
     switch(timer_num) {
         case(3):

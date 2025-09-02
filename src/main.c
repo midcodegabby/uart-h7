@@ -11,13 +11,14 @@
 #include "gpio.h"
 #include "main.h"
 #include "tcnt.h"
+#include "uart.h"
 
 //LD1: PB0
 //LD2: PE1
 //LD3: PB14
 //B1: PC13
 
-const GPIO_mode_t led_mode = PWM;
+const GPIO_mode_t led_mode = OUTPUT;
 const uint8_t pwm_max = 0xF;
 volatile button_state_t button = UNPRESSED;
 
@@ -27,13 +28,21 @@ int main(void) {
 	gpio_led_init(led_mode);
 	nvic_enable();
 	exti_init();
-	timer3_pwm_init();
-	timer12_pwm_init();
+	//timer3_pwm_init();
+	//timer12_pwm_init();
+	//timer3_down_init();
+	//uart_init(38400);
+	uart_init(921600);
 
 	while(1) {
 		static uint8_t led_brightness = 0;
-
+		//timer3_blocking_delay(ONE_SECOND_10KHZ);
+		//gpio_toggle('B', 0);
+        
+		
+		
 		if(button == PRESSED) {
+			uart_tx('0'); 
 			if(led_mode == OUTPUT) {
 				gpio_toggle('B', 0);
 				gpio_toggle('E', 1);
@@ -52,6 +61,8 @@ int main(void) {
 			
 			button = UNPRESSED;
 		}
+		
+		
 	}
 
 	return 0;

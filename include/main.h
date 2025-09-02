@@ -8,6 +8,8 @@ Date: 6/9/2025
 #ifndef _MAIN_H
 #define _MAIN_H
 
+#define SYSCLK_FREQ     (64000000U)
+
 typedef enum {
     PRESSED,
     UNPRESSED
